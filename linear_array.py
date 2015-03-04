@@ -2,7 +2,7 @@
 #filename='/home/ghasemi/blenderscript.py'
 #exec(compile(open(filename).read(), filename, 'exec'))
 #Run this from your terminal
-# blender -b template.blend -P lin_array.py
+# blender -b scenes/simple.blend -P linear_array.py
 
 import bpy
 import os
@@ -88,7 +88,7 @@ scene.render.image_settings.file_format='PNG'
 bpy.data.objects['Plane'].select=1;
 bpy.data.objects['Plane'].location=(0,20,0)
 bpy.data.objects["Plane"].rotation_euler=Euler((pi/2, 0.0, 0.0), 'XYZ')
-loadImage('repet.jpg',bpy.data.objects["Plane"])
+loadImage('textures/repet.jpg',bpy.data.objects["Plane"])
 
 m=300;
 n1=1280;
@@ -103,7 +103,7 @@ for i in range(0,m+1):
 	Tx[i]=b*Tx[i]/max_Tx; #Force baseline to be 0
 
 #Z axis trajectory
-Tz=build_traj(m,b/100); #Second argument is noise variance
+Tz=build_traj(m,b/10); #Second argument is noise variance
 mean_Tz=sum(Tz)/(m+1.0); 
 for i in range(0,m+1):
 	Tz[i]=Tz[i]-mean_Tz; #So that the average of noise in Z axis is 0
